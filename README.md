@@ -151,6 +151,12 @@ The production alias is `kalye-tunes.vercel.app`.
 - **Performance** — preconnected fonts, `fetchpriority="high"` hero image, lazy-loaded posters and stock photography, rAF-throttled scroll work, no JavaScript libraries
 - **SEO / sharing** — canonical URL, Open Graph + Twitter cards, PNG favicon, `MusicEvent` and `FAQPage` JSON-LD
 
+## Repository & deployment
+
+- **GitHub:** [ruverabanto-jpg/kalye-tunes](https://github.com/ruverabanto-jpg/kalye-tunes) — static HTML site, production branch `main`
+- **Vercel:** the existing `kalye-tunes` project is linked to the repository; pushes to `main` trigger production deployments automatically
+- **Framework:** none — no build step, no package manager, no framework output
+
 ## Content notes
 
 - Event details (date, times, prices, lineup, partners) are adapted from the official Kalye Tunes page and the **April 14, 2026 lineup poster**. Always confirm last-minute changes on the page.
