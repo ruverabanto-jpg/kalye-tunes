@@ -1,0 +1,16 @@
+.vercel/
+.env*
+.env.*.local
+.DS_Store
+Thumbs.db
+*.log
+_build/
+_tools/
+_qa/
+_music/
+_fb/
+_artists/
+.pnpm-store/
+_debug_*.py
+_hosts/
+_archive/
