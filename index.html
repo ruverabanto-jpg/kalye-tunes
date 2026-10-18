@@ -551,6 +551,77 @@
     .hero-fade-2 { animation-delay: 620ms; }
     .hero-fade-3 { animation-delay: 720ms; }
 
+    /* ---------- Hero: keep the landing screen inside the viewport ----------
+       The hero is a one-screen poster: its vertical rhythm (title size, shell and
+       section padding, stack gaps) tracks svh, so short laptop screens and phones
+       compress the composition instead of pushing the details row below the fold.
+       The section keeps its 2px bottom rule, so the shell sizes to 100svh minus it. */
+    #home .hero-shell {
+      min-height: calc(100svh - 2px);
+      padding-top: clamp(4.75rem, 9svh, 6rem);
+      padding-bottom: clamp(1rem, 3.5svh, 2rem);
+    }
+
+    @media (max-width: 1023px) {
+      #home .hero-shell { padding-bottom: clamp(4.5rem, 10svh, 6rem); }
+    }
+
+    #home .hero-title {
+      font-size: clamp(3rem, min(17vw, 20svh), 15rem);
+    }
+
+    #home .hero-stage { padding-top: clamp(1rem, 5svh, 4rem); }
+    #home .hero-details {
+      margin-top: clamp(0.75rem, 2.5svh, 1.75rem);
+      padding-top: clamp(0.75rem, 2svh, 1.25rem);
+    }
+    #home .hero-foot { margin-top: clamp(0.5rem, 2svh, 1.25rem); }
+
+    /* Phones/tablets: the fixed action dock already carries Get Tickets + Lineup,
+       so the duplicated hero CTA column comes out, the redundant location line is
+       dropped, and the stacked details tighten up to stay one screen. */
+    @media (max-width: 1023px) {
+      #home .hero-cta { display: none; }
+
+      /* Keep the floating player off the poster: it fades in after the hero. */
+      .kt-radio {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+      }
+      .kt-radio.is-revealed { opacity: 1; visibility: visible; transform: none; }
+    }
+
+    @media (max-width: 639px) {
+      #home .hero-loc { display: none; }
+      #home .hero-shell { padding-bottom: clamp(4rem, 9svh, 5.5rem); }
+      #home .hero-stage { padding-top: clamp(0.75rem, 4svh, 2.5rem); }
+      #home .hero-details { gap: 1rem; }
+      #home .hero-copy { font-size: 0.8125rem; line-height: 1.55; }
+      #home .hero-cues { margin-top: 0.5rem; }
+      #home .hero-figure { font-size: 1.45rem; }
+    }
+
+    /* Short compact screens (phones and landscape tablets/small windows): drop
+       the supporting copy and kicker so the poster still lands inside the screen;
+       the when/where block and the dock CTAs keep the facts, and the same summary
+       appears in the About section. */
+    @media (max-width: 1023px) and (max-height: 740px) {
+      #home .hero-tagline,
+      #home .hero-intro,
+      #home .hero-foot { display: none; }
+      #home .hero-title { font-size: clamp(2.75rem, min(17vw, 16svh), 4.2rem); }
+      #home .hero-details { padding-top: 0.75rem; }
+    }
+
+    /* Very short desktop windows: the scroll cue strip is the first thing to go,
+       so the poster still lands inside a 600–680px-tall window. */
+    @media (min-width: 1024px) and (max-height: 680px) {
+      #home .hero-foot { display: none; }
+      #home .hero-title { font-size: clamp(3rem, min(17vw, 18svh), 15rem); }
+    }
+
     .scroll-dot { animation: scroll-dot 2s ease-in-out infinite; }
 
     /* ---------- Marquee ---------- */
@@ -1581,6 +1652,7 @@
   <noscript>
     <style>
       .reveal { opacity: 1 !important; transform: none !important; }
+      .kt-radio { opacity: 1 !important; visibility: visible !important; transform: none !important; }
     </style>
   </noscript>
 </head>
@@ -1721,7 +1793,7 @@
         <div class="hero-halftone absolute inset-0"></div>
       </div>
 
-      <div class="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1440px] flex-col px-4 pb-24 pt-24 sm:px-8 lg:px-12 lg:pb-8">
+      <div class="hero-shell relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1440px] flex-col px-4 pb-24 pt-24 sm:px-8 lg:px-12 lg:pb-8">
         <div class="hero-fade hero-fade-1 flex flex-wrap items-start justify-between gap-4 border-b border-white/15 pb-4">
           <span class="inline-flex items-center gap-3 border border-cyan/50 bg-cyan/10 px-3 py-1.5">
             <span class="relative flex h-2 w-2" aria-hidden="true">
@@ -1731,12 +1803,12 @@
             <span class="font-mono text-[9px] font-bold uppercase tracking-[0.26em] text-cyan">UP Fair Wednesday</span>
             <span class="font-mono text-[9px] font-bold uppercase tracking-[0.26em] text-white/45">/ Kalye Tunes 2026</span>
           </span>
-          <p class="font-mono text-[9px] font-semibold uppercase tracking-[0.26em] text-gray-400">UP Diliman · Quezon City</p>
+          <p class="hero-loc font-mono text-[9px] font-semibold uppercase tracking-[0.26em] text-gray-400">UP Diliman · Quezon City</p>
         </div>
 
-        <div class="mt-auto pt-12 sm:pt-16">
+        <div class="hero-stage mt-auto pt-12 sm:pt-16">
           <div class="flex flex-wrap items-end justify-between gap-3">
-            <p class="max-w-4xl font-heading text-base uppercase leading-none tracking-[0.14em] text-cyan sm:text-lg">
+            <p class="hero-tagline max-w-4xl font-heading text-base uppercase leading-none tracking-[0.14em] text-cyan sm:text-lg">
               isang gabi ng hiphop at OPM para sa maralitang lungsod.
             </p>
             <p class="hidden text-right font-mono text-[9px] font-bold uppercase leading-relaxed tracking-[0.22em] text-gray-400 lg:block">Para sa masa.<br />Para sa kalye.</p>
@@ -1752,12 +1824,12 @@
             </span>
           </h1>
 
-          <div class="hero-fade hero-fade-3 mt-7 grid gap-6 border-t-2 border-white/15 pt-6 sm:mt-8 lg:mt-7 lg:grid-cols-12 lg:items-end lg:gap-6 lg:pt-5 xl:gap-8">
-            <div class="lg:col-span-4 xl:col-span-3">
-              <p class="max-w-sm font-mono text-sm leading-relaxed text-gray-300">
+          <div class="hero-fade hero-fade-3 hero-details mt-7 grid gap-6 border-t-2 border-white/15 pt-6 sm:mt-8 lg:mt-7 lg:grid-cols-12 lg:items-end lg:gap-6 lg:pt-5 xl:gap-8">
+            <div class="hero-intro lg:col-span-4 xl:col-span-3">
+              <p class="hero-copy max-w-sm font-mono text-sm leading-relaxed text-gray-300">
                 The Kalye Class of 2026 takes the Sunken Garden for UP Fair Wednesday — 29 acts, one night of local hiphop and OPM, for the urban poor.
               </p>
-              <p class="mt-4 inline-flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.24em] text-cyan">
+              <p class="hero-cues mt-4 inline-flex items-center gap-2 font-mono text-[9px] font-bold uppercase tracking-[0.24em] text-cyan">
                 <span class="blink" aria-hidden="true">▌</span> Ticket booth 10:00 · Gates 15:00 · Until 02:00
               </p>
             </div>
@@ -1765,17 +1837,17 @@
             <div class="grid grid-cols-2 gap-4 lg:col-span-4 lg:border-x-2 lg:border-white/15 lg:px-6 xl:px-8">
               <div class="border-l-2 border-cyan pl-4">
                 <p class="font-mono text-[8px] font-bold uppercase tracking-[0.26em] text-cyan">When</p>
-                <p class="mt-2 font-heading text-[1.7rem] uppercase leading-[0.95] sm:text-3xl">Wed · 15<br />Apr 2026</p>
+                <p class="hero-figure mt-2 font-heading text-[1.7rem] uppercase leading-[0.95] sm:text-3xl">Wed · 15<br />Apr 2026</p>
                 <p class="mt-2 font-mono text-[9px] uppercase tracking-[0.17em] text-gray-400">Until 02:00</p>
               </div>
               <div class="border-l-2 border-cyan pl-4">
                 <p class="font-mono text-[8px] font-bold uppercase tracking-[0.26em] text-cyan">Where</p>
-                <p class="mt-2 font-heading text-[1.7rem] uppercase leading-[0.95] sm:text-3xl">UP Sunken<br />Garden</p>
+                <p class="hero-figure mt-2 font-heading text-[1.7rem] uppercase leading-[0.95] sm:text-3xl">UP Sunken<br />Garden</p>
                 <p class="mt-2 font-mono text-[9px] uppercase tracking-[0.17em] text-gray-400">Diliman, QC</p>
               </div>
             </div>
 
-            <div class="flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:flex-col xl:flex-row xl:justify-end">
+            <div class="hero-cta flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:flex-col xl:flex-row xl:justify-end">
               <a href="https://kalyetunes.helixpay.ph/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg group">
                 Buy Tickets
                 <span class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
@@ -1788,7 +1860,7 @@
           </div>
         </div>
 
-        <div class="mt-6 hidden items-center justify-between gap-4 border-t border-white/15 pt-3 font-mono text-[8px] font-semibold uppercase tracking-[0.24em] text-gray-400 sm:mt-8 md:flex lg:mt-5">
+        <div class="hero-foot mt-6 hidden items-center justify-between gap-4 border-t border-white/15 pt-3 font-mono text-[8px] font-semibold uppercase tracking-[0.24em] text-gray-400 sm:mt-8 md:flex lg:mt-5">
           <span class="inline-flex items-center gap-3">
             <span class="relative block h-7 w-px overflow-hidden bg-white/20" aria-hidden="true">
               <span class="scroll-dot absolute left-0 top-0 block h-2 w-px bg-cyan"></span>
@@ -3155,6 +3227,31 @@
         window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
         mainContent.focus({ preventScroll: true });
       });
+
+      /* ---------- Floating radio reveal ----------
+         On phones/tablets the fixed player would sit on top of the hero details,
+         so it only fades in once the poster has been scrolled past; desktop keeps
+         it on screen from the start. The player markup is parsed after this
+         script, so wait for the document to be ready. */
+      document.addEventListener('DOMContentLoaded', () => {
+        const player = document.getElementById('kalye-radio');
+        if (!player) return;
+        const compact = window.matchMedia('(max-width: 1023px)');
+        let queued = false;
+        const syncReveal = () => {
+          queued = false;
+          player.classList.toggle('is-revealed', !compact.matches || window.scrollY > window.innerHeight * 0.45);
+        };
+        const queueSync = () => {
+          if (queued) return;
+          queued = true;
+          window.requestAnimationFrame(syncReveal);
+        };
+        window.addEventListener('scroll', queueSync, { passive: true });
+        window.addEventListener('resize', queueSync);
+        if (compact.addEventListener) compact.addEventListener('change', queueSync);
+        syncReveal();
+      }, { once: true });
     })();
   </script>
 
