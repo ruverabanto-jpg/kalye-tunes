@@ -74,14 +74,30 @@ if (!/href="\/build\/style-[A-Za-z0-9_-]+\.css"/.test(html)) failures.push('html
 const fonts = await readdir(join(dist, 'assets', 'fonts')).catch(() => []);
 if (!fonts.some((file) => file.endsWith('.woff2'))) failures.push('fonts: no .woff2 files in dist/assets/fonts');
 
-// Modern formats used by the above-the-fold <picture> elements must be present.
-for (const image of ['kalye-tunes-hero.avif', 'kalye-tunes-hero.webp', 'kalye-tunes-wordmark.avif']) {
-  if (!(await exists(join(dist, 'assets', image)))) failures.push(`images: missing ${image}`);
+// Every rendered image (static attributes, JSON-LD and inline-script data) must
+// have AVIF + WebP siblings; social cards, icons and the QR keep original formats.
+const IMAGE_SKIP = [/\/assets\/og-/, /\/assets\/favicon\.png$/, /\/assets\/apple-touch-icon\.png$/, /\/assets\/icon-\d+\.png$/, /\/assets\/kalye-tunes-logo-160\.png$/, /\/assets\/merch\/order-qr\.png$/];
+const renderedImages = new Set();
+for (const match of html.matchAll(/(?:\/assets\/)[A-Za-z0-9_\-./]+\.(?:jpe?g|png)/g)) {
+  const url = match[0];
+  if (IMAGE_SKIP.some((pattern) => pattern.test(url))) continue;
+  renderedImages.add(url);
 }
+let modernVariants = 0;
+for (const url of renderedImages) {
+  for (const ext of ['avif', 'webp']) {
+    const variant = url.replace(/\.(?:jpe?g|png)$/i, '.' + ext);
+    if (!(await exists(join(dist, variant)))) failures.push(`images: missing ${variant} for ${url}`);
+    modernVariants += 1;
+  }
+}
+if (modernVariants < 100) failures.push(`images: expected modern variants for the rendered images (found ${modernVariants})`);
+const avifSources = (html.match(/type="image\/avif"/g) || []).length;
+if (avifSources < 25) failures.push(`html: expected AVIF <source> elements across the rendered images (found ${avifSources})`);
 
 if (failures.length) {
   console.error(`✗ ${failures.length} build verification failure(s):`);
   for (const failure of failures) console.error('  - ' + failure);
   process.exit(1);
 }
-console.log(`✓ build verified: ${seen.size} local files resolve, CSS bundle ${cssFile}, ${fonts.length} font files`);
+console.log(`✓ build verified: ${seen.size} local files resolve, ${renderedImages.size} images with modern variants, CSS bundle ${cssFile}, ${fonts.length} font files`);
