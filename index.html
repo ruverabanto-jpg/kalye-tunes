@@ -519,6 +519,10 @@
     .hero-line { display: flex; width: 100%; justify-content: center; gap: 0.012em; }
     .hero-line > span { display: block; animation: letter-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
+    /* Optical kerning: Pirata One's T arm runs into the U's outline at display size,
+       so give the T–U pair extra breathing room. Em-based, so it scales with clamp(). */
+    .hero-line > span.kern-t-u { margin-left: 0.075em; }
+
     .hero-line-filled > span {
       color: var(--stark);
       text-shadow: 0.035em 0.035em 0 var(--crimson), -0.02em -0.02em 0 rgba(0, 229, 255, 0.8);
@@ -1744,7 +1748,7 @@
               <span>K</span><span>A</span><span>L</span><span>Y</span><span>E</span>
             </span>
             <span class="hero-line hero-line-outline mt-1" aria-hidden="true">
-              <span>T</span><span>U</span><span>N</span><span>E</span><span>S</span>
+              <span>T</span><span class="kern-t-u">U</span><span>N</span><span>E</span><span>S</span>
             </span>
           </h1>
 
