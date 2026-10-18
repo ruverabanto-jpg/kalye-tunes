@@ -63,40 +63,56 @@ Tokens live in the `tailwind.config` block and the `:root` custom properties in 
 
 ## Stack
 
-- HTML5
-- Tailwind CSS via CDN with an inline design-token config
-- Vanilla JavaScript (no dependencies, no build step)
-- Google Fonts: Pirata One, Bebas Neue, Space Mono
-- Official Facebook page posters and artwork in `assets/`
-- One stock crowd photo via Unsplash
+- HTML5 single-page site with vanilla JavaScript (no runtime framework)
+- [Vite 8](https://vite.dev/) build (`index.html` is the entry; output in `dist/`)
+- [Tailwind CSS v4](https://tailwindcss.com/) through `@tailwindcss/vite`, configured CSS-first in `src/styles.css` (`@theme` tokens + the hand-written design system)
+- Self-hosted, subsetted WOFF2 fonts: Pirata One, Bebas Neue, Space Mono (`public/assets/fonts/`, preloaded, no third-party font CDN)
+- AVIF/WebP variants for the above-the-fold images, served through `<picture>` with the original JPEG/PNG as fallback
+- Dependabot for weekly npm and GitHub Actions updates; every Vercel build runs `pnpm build && pnpm check`, so a broken reference or missing asset fails the deploy
+- Vercel builds and deploys `dist/`
 
-No build step is required. Internet access is needed for the CDN-hosted fonts, the Tailwind runtime, and the Spotify preview clips.
+Node.js 22+ and pnpm 11 are required for local development.
 
 ## Structure
 
 ```text
 kalye-tunes/
-├── index.html              # Markup, design-system CSS, and interaction
-├── assets/
-│   ├── kalye-tunes-hero.jpg       # Hero background photo (stage + crowd)
-│   ├── kalye-class-2026.jpg        # Official Kalye Class of 2026 poster
-│   ├── kalye-gates-open.jpg        # Official gates-open poster
-│   ├── kalye-tunes-logo.png        # Transparent badge artwork (master)
-│   ├── kalye-tunes-logo-160.png    # Small badge variant
-│   ├── kalye-tunes-wordmark.png    # White wordmark extracted from the badge (header + organizer)
-│   ├── kalye-tunes-playlist-cover.jpg  # Playlist artwork (vinyl label)
-│   ├── artists/                     # 720×720 artist spotlight images (Spotify portraits / official artwork)
-│   ├── advocacy/                    # 12 official advocacy-post images used by the advocacy carousel
-│   ├── hosts/                       # Official Maroon FM host cards, resident-host photos, and hosts reveal art
-│   ├── brands/                      # Official logos (Kalye Tunes, EMC², Kadamay, SIKAD) and the physical ticket art
-│   ├── upfair/                      # UP Fair traffic-plan map and prohibited-items artwork
-│   ├── merch/                       # Official reopened merch-drop designs and order QR
-│   ├── favicon.png                 # Browser / home-screen icon
-│   ├── og-kalye-tunes-home.jpg     # 1200×630 homepage screenshot for link previews
-│   └── og-fallback.jpg             # Branded 1200×630 fallback share image
-├── vercel.json             # Vercel static config and security headers
+├── index.html              # Markup + inline interaction scripts (Vite entry)
+├── src/
+│   └── styles.css          # Tailwind v4 entry: @theme tokens, @font-face, design system
+├── public/                 # Copied verbatim into dist/
+│   ├── assets/
+│   │   ├── kalye-tunes-hero.jpg      # Hero background photo (+ .avif / .webp variants)
+│   │   ├── kalye-tunes-wordmark.png  # Header wordmark (+ .avif / .webp variants)
+│   │   ├── kalye-class-2026.jpg      # Official Kalye Class of 2026 poster
+│   │   ├── kalye-gates-open.jpg      # Official gates-open poster
+│   │   ├── kalye-tunes-logo.png      # Transparent badge artwork (master)
+│   │   ├── kalye-tunes-logo-160.png  # Small badge variant
+│   │   ├── kalye-tunes-playlist-cover.jpg  # Playlist artwork (vinyl label)
+│   │   ├── fonts/                    # Self-hosted WOFF2 subsets
+│   │   ├── artists/                  # 720×720 artist spotlight images
+│   │   ├── advocacy/                 # 12 official advocacy-post images
+│   │   ├── hosts/                    # Maroon FM host cards and photos
+│   │   ├── brands/                   # Official logos and ticket art
+│   │   ├── upfair/                   # Traffic-plan map and prohibited-items artwork
+│   │   ├── merch/                    # Official merch designs and order QR
+│   │   ├── favicon.png               # Browser / home-screen icon
+│   │   ├── og-kalye-tunes-home.jpg   # 1200×630 homepage social card
+│   │   └── og-fallback.jpg           # Branded 1200×630 fallback social card
+│   ├── robots.txt
+│   ├── sitemap.xml
+│   ├── site.webmanifest
+│   └── 28c6222333ef447695a6989d7837a899.txt  # IndexNow verification key
+├── scripts/
+│   ├── optimize-images.mjs   # Regenerates the AVIF/WebP variants (pnpm images)
+│   └── verify-build.mjs      # Post-build link/asset/CSS verification (pnpm check)
+├── .github/
+│   └── dependabot.yml        # Weekly npm + GitHub Actions updates
+├── package.json / pnpm-lock.yaml
+├── vite.config.js
+├── vercel.json             # Vercel build settings, caching, and security headers
 ├── .vercelignore           # Keeps docs and local metadata out of deployments
-├── .gitignore              # Local Vercel state, build scratch, environment files
+├── .gitignore
 ├── README.md
 ├── _archive/
 │   └── index.original.html # Pre-redesign snapshot (not deployed)
@@ -105,17 +121,25 @@ kalye-tunes/
 
 ## Local preview
 
-Open `index.html` directly in a browser, or serve the folder:
-
 ```powershell
-python -m http.server 4173
+pnpm install
+pnpm dev        # http://127.0.0.1:5173
 ```
 
-Then visit `http://localhost:4173`.
+Production build preview:
+
+```powershell
+pnpm build      # writes dist/
+pnpm check      # verifies every local URL in dist/ resolves
+pnpm preview    # http://127.0.0.1:4173
+```
 
 ## Deploy
 
-This folder is already linked to the Vercel project `kalye-tunes`:
+Pushes to `main` trigger a Vercel production deployment automatically. Vercel runs
+`pnpm install --frozen-lockfile && pnpm build` and serves `dist/` (see `vercel.json`).
+
+To deploy from this folder instead:
 
 ```powershell
 vercel deploy --prod
@@ -148,15 +172,17 @@ The production alias is `kalye-tunes.vercel.app`.
 - **Merch drop** — three official ₱650 shirt designs (Beware of Gods, Buhay Kalye, RE: PORMA) in the Tickets section, with the official reopened-order post and PIXEL order QR
 - **Partner directory** — a footer directory of organizations and sponsors with verified official outbound links; partners without a confirmed public page are listed without links to avoid dead URLs
 - **Accessibility** — skip link, visible `:focus-visible` rings, labelled landmarks and controls, decorative art marked `aria-hidden`, reduced-motion support
-- **Performance** — preconnected fonts, `fetchpriority="high"` hero image, lazy-loaded posters and stock photography, rAF-throttled scroll work, no JavaScript libraries
+- **Performance** — self-hosted preloaded WOFF2 fonts (no font CDN), `fetchpriority="high"` hero photo with AVIF/WebP `<picture>` variants, hashed and immutable-cached CSS bundle, lazy-loaded posters and stock photography, rAF-throttled scroll work, no JavaScript libraries
 - **SEO / sharing** — canonical URL, Open Graph + Twitter cards, PNG favicon, `MusicEvent` and `FAQPage` JSON-LD
 
 ## Repository & deployment
 
-- **GitHub:** [ruverabanto-jpg/kalye-tunes](https://github.com/ruverabanto-jpg/kalye-tunes) — static HTML site, production branch `main`
-- **Vercel:** the existing `kalye-tunes` project is linked to the repository; pushes to `main` trigger production deployments automatically
-- **Framework:** none — no build step, no package manager, no framework output
-- **Tailwind:** `assets/tailwind.css` is committed compiled CSS. After editing Tailwind classes in `index.html`, rebuild with `npx tailwindcss@3.4.17 -c tailwind.config.cjs -i assets/tailwind.input.css -o assets/tailwind.css --minify`.
+- **GitHub:** [ruverabanto-jpg/kalye-tunes](https://github.com/ruverabanto-jpg/kalye-tunes) — production branch `main`
+- **Vercel:** the existing `kalye-tunes` project is linked to the repository; pushes to `main` trigger production deployments automatically (Vite build → `dist/`)
+- **Build:** Vite 8 + Tailwind CSS v4 (`@tailwindcss/vite`); `src/styles.css` is the Tailwind entry, `index.html` the app entry
+- **Verification:** every Vercel build runs `pnpm build && pnpm check`, so the deploy fails if a local URL, font file, modern image variant or design-system hook is missing. `pnpm check` can be run locally after `pnpm build`.
+- **Images:** above-the-fold images ship AVIF/WebP variants generated by `pnpm images` (`scripts/optimize-images.mjs`, sharp). Rerun it after replacing one of the listed source images; everything below the fold stays JPEG and lazy-loaded
+- **Verification:** `pnpm check` resolves every local URL in `dist/` (HTML attributes, srcsets, inline-script paths, CSS `url()`), checks the font files, modern image variants, and the design-system hooks in the CSS bundle
 
 ## Content notes
 

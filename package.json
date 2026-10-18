@@ -1,0 +1,24 @@
+{
+  "name": "kalye-tunes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Kalye Tunes 2026 — UP Fair Wednesday static landing page",
+  "packageManager": "pnpm@11.7.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "node scripts/verify-build.mjs",
+    "images": "node scripts/optimize-images.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.4"
+  }
+}

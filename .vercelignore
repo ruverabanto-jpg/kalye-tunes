@@ -1,7 +1,7 @@
+node_modules/
+dist/
 .vercel/
 .env*
-node_modules/
-README.md
 .gitignore
 *.log
 _archive/
@@ -11,6 +11,8 @@ _qa/
 _music/
 _fb/
 _artists/
+seo-audit/
+frontend-agent/
 .pnpm-store/
 .pnpm-cache/
 .pnpm-virtual/
