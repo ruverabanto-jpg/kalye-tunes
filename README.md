@@ -156,6 +156,7 @@ The production alias is `kalye-tunes.vercel.app`.
 - **GitHub:** [ruverabanto-jpg/kalye-tunes](https://github.com/ruverabanto-jpg/kalye-tunes) — static HTML site, production branch `main`
 - **Vercel:** the existing `kalye-tunes` project is linked to the repository; pushes to `main` trigger production deployments automatically
 - **Framework:** none — no build step, no package manager, no framework output
+- **Tailwind:** `assets/tailwind.css` is committed compiled CSS. After editing Tailwind classes in `index.html`, rebuild with `npx tailwindcss@3.4.17 -c tailwind.config.cjs -i assets/tailwind.input.css -o assets/tailwind.css --minify`.
 
 ## Content notes
 

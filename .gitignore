@@ -7,6 +7,9 @@ Thumbs.db
 _build/
 _tools/
 _qa/
+_seo-tools/
+seo-audit/
+frontend-agent/
 _music/
 _fb/
 _artists/

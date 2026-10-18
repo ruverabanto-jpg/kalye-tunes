@@ -48,44 +48,8 @@
   </style>
 
   <!-- Tailwind CSS + design tokens -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            pitch: '#050505',
-            stark: '#ffffff',
-            crimson: {
-              DEFAULT: '#660000',
-              dark: '#4a0000',
-              light: '#8b0000'
-            },
-            cyan: {
-              DEFAULT: '#00e5ff',
-              dark: '#00b3cc'
-            },
-            olive: '#2e4a22',
-            gray: {
-              900: '#111111',
-              800: '#222222',
-              400: '#888888'
-            }
-          },
-          fontFamily: {
-            display: ['"Pirata One"', 'cursive'],
-            heading: ['"Bebas Neue"', 'sans-serif'],
-            mono: ['"Space Mono"', 'ui-monospace', 'monospace']
-          },
-          boxShadow: {
-            'brutal-cyan': '4px 4px 0px 0px #00e5ff',
-            'brutal-crimson': '4px 4px 0px 0px #660000',
-            'brutal-white': '4px 4px 0px 0px #ffffff'
-          }
-        }
-      }
-    };
-  </script>
+  <link rel="stylesheet" href="assets/tailwind.css" />
+
 
   <style>
     /* ============================================================
@@ -1933,7 +1897,7 @@
                 <a href="https://www.facebook.com/EMC2Fraternity/" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-3" aria-label="EMC² Fraternity on Facebook">
                   <img src="assets/brands/emc2-logo.png" alt="EMC² Fraternity logo" width="962" height="238" class="h-12 w-auto max-w-[230px] object-contain" loading="lazy" decoding="async" />
                 </a>
-                <p class="mt-2 font-mono text-[9px] uppercase tracking-[0.16em] text-gray-500">EMC² Fraternity · UP Diliman</p>
+                <p class="mt-2 font-mono text-[9px] uppercase tracking-[0.16em] text-gray-400">EMC² Fraternity · UP Diliman</p>
               </div>
 
               <div class="mt-5 border-t border-white/15 pt-4">
@@ -2102,7 +2066,7 @@
             <div class="spot-progress" aria-hidden="true"><div id="spot-progress"></div></div>
           </div>
 
-          <p class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[9px] leading-relaxed text-gray-500">
+          <p class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[9px] leading-relaxed text-gray-400">
             <span>Auto-advances every 7s through all 29 acts — shuffled each visit so the spotlight moves around.</span>
             <span class="text-gray-600">Hover or focus to pause · <span id="spot-source">Photos via Spotify; artwork where no portrait is public.</span></span>
           </p>
@@ -2162,7 +2126,7 @@
             <a href="https://www.facebook.com/share/p/1HvF6ucrEX/" target="_blank" rel="noopener noreferrer" class="group block border border-gray-800 bg-gray-900 p-2 transition-colors hover:border-cyan">
               <img src="assets/hosts/hosts-art.jpg" alt="Official Kalye Tunes 2026 hosts reveal artwork" width="720" height="720" class="h-auto w-full" loading="lazy" decoding="async" />
             </a>
-            <p class="mt-3 font-mono text-[9px] leading-relaxed text-gray-500">Official hosts reveal · UP Fair 2026</p>
+            <p class="mt-3 font-mono text-[9px] leading-relaxed text-gray-400">Official hosts reveal · UP Fair 2026</p>
           </div>
         </div>
 
@@ -2182,7 +2146,7 @@
               <a href="https://x.com/maroon_fm" target="_blank" rel="noopener noreferrer" aria-label="Maroon FM on X" class="social-link social-link--sm">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.53 3H21l-7.19 8.21L22 21h-6.56l-5.14-6.72L4.4 21H1l7.51-8.58L2 3h6.56l4.82 6.37L17.53 3Zm-1.17 16h1.94L6.7 4.94H4.63L16.36 19Z"/></svg>
               </a>
-              <span class="hidden font-mono text-[8px] font-bold uppercase tracking-[0.18em] text-gray-500 sm:block">#TheBeatOfTheNewBreed</span>
+              <span class="hidden font-mono text-[8px] font-bold uppercase tracking-[0.18em] text-gray-400 sm:block">#TheBeatOfTheNewBreed</span>
             </div>
           </div>
           <div class="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -2247,7 +2211,7 @@
               <p class="font-mono text-[9px] font-bold uppercase tracking-[0.24em] text-cyan">Resident hosts</p>
               <h3 class="mt-1 font-heading text-3xl uppercase leading-none sm:text-4xl">Paris at Menchie</h3>
             </div>
-            <p class="font-mono text-[8px] font-bold uppercase tracking-[0.18em] text-gray-500">The home team</p>
+            <p class="font-mono text-[8px] font-bold uppercase tracking-[0.18em] text-gray-400">The home team</p>
           </div>
           <div class="mx-auto mt-4 grid max-w-4xl gap-4 md:grid-cols-2">
               <article class="reveal group flex flex-col overflow-hidden border border-crimson/50 bg-gray-900">
@@ -2481,9 +2445,9 @@
             <h3 class="mt-2 font-heading text-3xl uppercase leading-none sm:text-4xl">Usap tayo</h3>
             <p class="mt-4 font-mono text-[11px] leading-relaxed text-gray-400">Questions about tickets, merch, or the lineup? The page is the fastest way to reach the team.</p>
             <ul class="mt-5 space-y-3 border-t border-gray-800 pt-4 font-mono text-[11px] leading-relaxed text-gray-300">
-              <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">[+]</span><a href="https://www.facebook.com/kalyetunes" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">facebook.com/kalyetunes</a></li>
-              <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">[+]</span><a href="https://linktr.ee/kalyetunes" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">linktr.ee/kalyetunes</a></li>
-              <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">[+]</span><a href="mailto:kalyetunes@gmail.com" class="transition-colors hover:text-cyan">kalyetunes@gmail.com</a></li>
+              <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">[+]</span><a href="https://www.facebook.com/kalyetunes" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">facebook.com/kalyetunes</a></li>
+              <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">[+]</span><a href="https://linktr.ee/kalyetunes" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">linktr.ee/kalyetunes</a></li>
+              <li class="flex gap-3"><span class="text-cyan" aria-hidden="true">[+]</span><a href="mailto:kalyetunes@gmail.com" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">kalyetunes@gmail.com</a></li>
             </ul>
           </article>
         </div>
@@ -2620,7 +2584,7 @@
             <p class="mt-6 max-w-xl font-mono text-sm leading-relaxed text-gray-300 sm:text-base">
               Kalye Tunes 2026 is a concert-for-a-cause. Buy online through HelixPay, or take your chances at the walk-in booth on April 15 — the ticket booth opens at 10AM, gates at 3PM.
             </p>
-            <p class="mt-4 font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-gray-500">Walk-in tickets are still available · Entry gates close at 12MN · Re-entry closes at 10PM</p>
+            <p class="mt-4 font-mono text-[10px] uppercase leading-relaxed tracking-[0.16em] text-gray-400">Walk-in tickets are still available · Entry gates close at 12MN · Re-entry closes at 10PM</p>
           </div>
 
           <div class="reveal reveal-d1 flex flex-col items-center lg:col-span-5 lg:items-center">
@@ -2739,7 +2703,7 @@
                 </a>
                 <div class="flex items-center gap-3">
                   <img src="assets/merch/order-qr.png" alt="Official Kalye Tunes merch order QR code" width="400" height="400" class="h-16 w-16 border border-gray-800" loading="lazy" decoding="async" />
-                  <p class="max-w-[150px] font-mono text-[8px] leading-relaxed text-gray-500">Scan to order through PIXEL For Creators.</p>
+                  <p class="max-w-[150px] font-mono text-[8px] leading-relaxed text-gray-400">Scan to order through PIXEL For Creators.</p>
                 </div>
               </div>
             </div>
@@ -2843,52 +2807,52 @@
 
             <div>
               <p class="font-mono text-[8px] font-bold uppercase tracking-[0.24em] text-gray-400">In partnership with</p>
-              <ul class="mt-3 space-y-1.5 font-mono text-[10px] leading-relaxed text-gray-300">
-                <li><a href="https://www.metromart.com/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">MetroMart Philippines ↗</a></li>
-                <li><a href="https://www.facebook.com/thrdwrldofficial/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">THRD ↗</a></li>
-                <li><span class="text-gray-500">Maduming Timog</span></li>
-                <li><a href="https://joyride.com.ph/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">Joyride PH ↗</a></li>
+              <ul class="mt-3 space-y-2 font-mono text-[10px] leading-relaxed text-gray-300">
+                <li><a href="https://www.metromart.com/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">MetroMart Philippines ↗</a></li>
+                <li><a href="https://www.facebook.com/thrdwrldofficial/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">THRD ↗</a></li>
+                <li><span class="text-gray-400">Maduming Timog</span></li>
+                <li><a href="https://joyride.com.ph/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">Joyride PH ↗</a></li>
               </ul>
               <p class="mt-5 font-mono text-[8px] font-bold uppercase tracking-[0.24em] text-gray-400">Together with</p>
-              <ul class="mt-3 space-y-1.5 font-mono text-[10px] leading-relaxed text-gray-300">
-                <li><a href="https://www.thewatchalley.com/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">The Watch Alley ↗</a></li>
-                <li><a href="https://www.vibecoders.ph/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">Vibe Coders PH ↗</a></li>
-                <li><span class="text-gray-500">Noble Timepieces</span></li>
-                <li><span class="text-gray-500">Quantum Roadrunners</span></li>
+              <ul class="mt-3 space-y-2 font-mono text-[10px] leading-relaxed text-gray-300">
+                <li><a href="https://www.thewatchalley.com/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">The Watch Alley ↗</a></li>
+                <li><a href="https://www.vibecoders.ph/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">Vibe Coders PH ↗</a></li>
+                <li><span class="text-gray-400">Noble Timepieces</span></li>
+                <li><span class="text-gray-400">Quantum Roadrunners</span></li>
               </ul>
             </div>
 
             <div>
               <p class="font-mono text-[8px] font-bold uppercase tracking-[0.24em] text-gray-400">In cooperation with</p>
-              <ul class="mt-3 space-y-1.5 font-mono text-[10px] leading-relaxed text-gray-300">
-                <li><span class="text-gray-500">Sueño Cafe</span></li>
-                <li><span class="text-gray-500">Ground Lifted</span></li>
+              <ul class="mt-3 space-y-2 font-mono text-[10px] leading-relaxed text-gray-300">
+                <li><span class="text-gray-400">Sueño Cafe</span></li>
+                <li><span class="text-gray-400">Ground Lifted</span></li>
               </ul>
               <p class="mt-5 font-mono text-[8px] font-bold uppercase tracking-[0.24em] text-gray-400">Official payment partner</p>
-              <ul class="mt-3 space-y-1.5 font-mono text-[10px] leading-relaxed text-gray-300">
-                <li><a href="https://www.facebook.com/PIXELForCreators/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">PIXEL For Creators ↗</a></li>
+              <ul class="mt-3 space-y-2 font-mono text-[10px] leading-relaxed text-gray-300">
+                <li><a href="https://www.facebook.com/PIXELForCreators/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">PIXEL For Creators ↗</a></li>
               </ul>
               <p class="mt-5 font-mono text-[8px] font-bold uppercase tracking-[0.24em] text-gray-400">Media partners</p>
-              <ul class="mt-3 space-y-1.5 font-mono text-[10px] leading-relaxed text-gray-300">
-                <li><a href="https://www.facebook.com/MYXGlobal/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">MYX Global ↗</a></li>
-                <li><a href="https://www.facebook.com/dbtv.network/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">DBTV Network ↗</a></li>
-                <li><a href="https://www.facebook.com/upoptics/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">UP Photography Society (OPTICS) ↗</a></li>
+              <ul class="mt-3 space-y-2 font-mono text-[10px] leading-relaxed text-gray-300">
+                <li><a href="https://www.facebook.com/MYXGlobal/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">MYX Global ↗</a></li>
+                <li><a href="https://www.facebook.com/dbtv.network/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">DBTV Network ↗</a></li>
+                <li><a href="https://www.facebook.com/upoptics/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">UP Photography Society (OPTICS) ↗</a></li>
               </ul>
             </div>
 
             <div>
               <p class="font-mono text-[8px] font-bold uppercase tracking-[0.24em] text-gray-400">Org partners</p>
-              <ul class="mt-3 space-y-1.5 font-mono text-[10px] leading-relaxed text-gray-300">
-                <li><a href="https://www.facebook.com/updatasciencesociety/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">UP Data Science Society ↗</a></li>
-                <li><a href="https://www.facebook.com/upgearsandpinions/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">UP Gears and Pinions ↗</a></li>
-                <li><a href="https://www.facebook.com/TheUPRepertoryCompany/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">The UP Repertory Company ↗</a></li>
-                <li><a href="https://up-kalilayan.org/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">UP Kalilayan ↗</a></li>
-                <li><a href="https://www.facebook.com/upgeclub/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">UP Geodetic Engineering Club ↗</a></li>
-                <li><a href="https://www.facebook.com/upekit/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">UP Sigma Kappa Pi Fraternity ↗</a></li>
-                <li><span class="text-gray-500">UP Sigma Delta Pi Sorority</span></li>
-                <li><a href="https://www.facebook.com/UPJPIA/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">UP Junior Philippine Institute of Accountants ↗</a></li>
-                <li><a href="https://www.facebook.com/upjfa.org/" target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-cyan">UP Junior Finance Association ↗</a></li>
-                <li><span class="text-gray-500">Engage UP</span></li>
+              <ul class="mt-3 space-y-2 font-mono text-[10px] leading-relaxed text-gray-300">
+                <li><a href="https://www.facebook.com/updatasciencesociety/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">UP Data Science Society ↗</a></li>
+                <li><a href="https://www.facebook.com/upgearsandpinions/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">UP Gears and Pinions ↗</a></li>
+                <li><a href="https://www.facebook.com/TheUPRepertoryCompany/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">The UP Repertory Company ↗</a></li>
+                <li><a href="https://up-kalilayan.org/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">UP Kalilayan ↗</a></li>
+                <li><a href="https://www.facebook.com/upgeclub/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">UP Geodetic Engineering Club ↗</a></li>
+                <li><a href="https://www.facebook.com/upekit/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">UP Sigma Kappa Pi Fraternity ↗</a></li>
+                <li><span class="text-gray-400">UP Sigma Delta Pi Sorority</span></li>
+                <li><a href="https://www.facebook.com/UPJPIA/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">UP Junior Philippine Institute of Accountants ↗</a></li>
+                <li><a href="https://www.facebook.com/upjfa.org/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[24px] items-center py-0.5 transition-colors hover:text-cyan">UP Junior Finance Association ↗</a></li>
+                <li><span class="text-gray-400">Engage UP</span></li>
               </ul>
             </div>
           </div>
@@ -3394,7 +3358,7 @@
               '<span class="text-cyan">0' + offset + '</span>' +
               '<span class="min-w-0">' +
                 '<span class="block truncate text-white/80">' + esc(track.t) + '</span>' +
-                '<span class="block truncate text-[9px] uppercase tracking-[0.12em] text-gray-500">' + esc(track.a) + '</span>' +
+                '<span class="block truncate text-[9px] uppercase tracking-[0.12em] text-gray-400">' + esc(track.a) + '</span>' +
               '</span>' +
             '</li>'
           );
