@@ -1,0 +1,25 @@
+{
+  "name": "Kalye Tunes 2026 — UP Fair Wednesday",
+  "short_name": "Kalye Tunes",
+  "description": "Kalye Tunes 2026 at the UP Diliman Sunken Garden on April 15, 2026 — 29 acts of local hiphop and OPM.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "lang": "en-PH",
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
