@@ -62,9 +62,13 @@ if (!cssFile) {
   if (!css.includes('@font-face')) failures.push('css: no self-hosted @font-face rules found');
 }
 
-// Guardrails: no third-party font CDN, no stale committed Tailwind artifact.
+// Guardrails: no third-party font CDN, no stale committed Tailwind artifact,
+// and the performance hints for the hashed CSS / self-hosted fonts / AVIF hero.
 if (html.includes('fonts.googleapis.com') || html.includes('fonts.gstatic.com')) failures.push('html: still references Google Fonts');
 if (html.includes('/assets/tailwind.css')) failures.push('html: still references the old committed Tailwind CSS');
+if (!html.includes('/assets/fonts/pirata-one-400-latin.woff2')) failures.push('html: missing the self-hosted font preload');
+if (!/type="image\/avif"[^>]*href="\/assets\/kalye-tunes-hero\.avif"/.test(html)) failures.push('html: missing the AVIF hero preload');
+if (!/href="\/build\/style-[A-Za-z0-9_-]+\.css"/.test(html)) failures.push('html: hashed stylesheet link missing');
 
 // Font files must ship with the build.
 const fonts = await readdir(join(dist, 'assets', 'fonts')).catch(() => []);
