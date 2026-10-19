@@ -1,8 +1,8 @@
-# Kalye Tunes 2026 — UP Fair Wednesday
+# Kalye Tunes 2026 — UP Fair Saturday
 
-A single-page landing page for **Kalye Tunes 2026: UP Fair Wednesday**, the Wednesday night of UP Fair 2026 at the University of the Philippines Diliman.
+A single-page landing page for **Kalye Tunes 2026: UP Fair Saturday**, the Wednesday night of UP Fair 2026 at the University of the Philippines Diliman.
 
-The content and posters are adapted from the official [Kalye Tunes: UP Fair Wednesday](https://www.facebook.com/kalyetunes) Facebook page (selected posts, March–October 2026).
+The content and posters are adapted from the official [Kalye Tunes: UP Fair Saturday](https://www.facebook.com/kalyetunes) Facebook page (selected posts, March–October 2026).
 
 ## Live site
 
@@ -171,6 +171,7 @@ The production alias is `kalye-tunes.vercel.app`.
 - **Official branding** — the Kalye Tunes 2026 badge in the Advocacy statement panel, the EMC² Fraternity logo in the Advocacy/footer areas, and dark-background Kadamay/SIKAD logo variants in Advocacy and the footer partner directory, all treated consistently on the dark surface
 - **Physical ticket art** — the uploaded official ticket design is shown in the Tickets header as the "Official physical ticket" visual, linked to HelixPay
 - **Merch drop** — three official ₱650 shirt designs (Beware of Gods, Buhay Kalye, RE: PORMA) in the Tickets section, with the official reopened-order post and PIXEL order QR
+- **Merch magnifier** — hover, tap, or keyboard-focus any 2026 shirt mockup for a 2.3–2.6× circular lens with reticle, scale badge, arrow-key panning and Escape-to-close
 - **Partner directory** — a footer directory of organizations and sponsors with verified official outbound links; partners without a confirmed public page are listed without links to avoid dead URLs
 - **Accessibility** — skip link, visible `:focus-visible` rings, labelled landmarks and controls, decorative art marked `aria-hidden`, reduced-motion support
 - **Performance** — self-hosted preloaded WOFF2 fonts (no font CDN), `fetchpriority="high"` hero photo, AVIF/WebP `<picture>` variants for every rendered image (≈80 % less image weight on a full page load), hashed and immutable-cached CSS bundle, lazy-loaded posters and photography, rAF-throttled scroll work, no JavaScript libraries
@@ -203,3 +204,20 @@ The production alias is `kalye-tunes.vercel.app`.
 - Kadamay background is sourced from [kadamay.org/about](https://kadamay.org/about/); the 12 advocacy carousel entries link to the official posts supplied for the build.
 - The Kalye Tunes 2026 badge artwork is supplied brand material. Its transparent white wordmark is used in the header and organizer strip; the full badge is used for the favicon and social share card.
 - Replace the remaining stock photo with final event photography when available.
+
+
+---
+
+## 2027 site (Next.js)
+
+The 2027 rebuild lives in [`next-site/`](next-site/README.md) — Next.js 16 App Router,
+TypeScript, Tailwind 4, with the PULSO NG KALYE tokens ported into `src/app/globals.css`.
+
+* Routes: `/`, `/lineup`, `/tickets`, `/sponsors`, `/about`, `/press`, `/faq`
+* Organizer (EMC² Fraternity) is locked in; the floating **Kalye Radio** player streams last year's hits
+* lineup, partners and ticketing are pending announcements and render a deliberate **"Stay Kalye Tuned…"** state
+* `POST /api/inquiry` handles partner/press enquiries with validation, honeypot and rate limiting
+* Event + FAQPage JSON-LD, generated sitemap and robots
+
+This Vite site (the 2026 page at the repository root) is untouched and still deployable.
+Nothing here depends on `next-site/` and vice versa.

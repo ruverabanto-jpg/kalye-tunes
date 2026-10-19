@@ -83,6 +83,16 @@ for (const match of html.matchAll(/(?:\/assets\/)[A-Za-z0-9_\-./]+\.(?:jpe?g|png
   if (IMAGE_SKIP.some((pattern) => pattern.test(url))) continue;
   renderedImages.add(url);
 }
+// Content data (artist spotlight, advocacy feed) now lives in the JS bundle,
+// so scan the built modules for image paths as well.
+for (const file of (await readdir(join(dist, 'build'))).filter((name) => name.endsWith('.js'))) {
+  const js = await readFile(join(dist, 'build', file), 'utf8');
+  for (const match of js.matchAll(/(?:\/assets\/)[A-Za-z0-9_\-./]+\.(?:jpe?g|png)/g)) {
+    const url = match[0];
+    if (IMAGE_SKIP.some((pattern) => pattern.test(url))) continue;
+    renderedImages.add(url);
+  }
+}
 let modernVariants = 0;
 for (const url of renderedImages) {
   for (const ext of ['avif', 'webp']) {
